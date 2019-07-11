@@ -10,12 +10,19 @@
 
 .breadcrumb-item {
   // The separator between breadcrumbs (by default, a forward-slash: "/")
+  a {
+    color: $gray-500;
+    &:hover {
+      color: $primary;
+    }
+  }
+
   + .breadcrumb-item {
-    padding-left: $breadcrumb-item-padding-x;
+    padding-left: $breadcrumb-item-padding;
 
     &::before {
       display: inline-block; // Suppress underlining of the separator in modern browsers
-      padding-right: $breadcrumb-item-padding-x;
+      padding-right: $breadcrumb-item-padding;
       color: $breadcrumb-divider-color;
       content: $breadcrumb-divider;
     }

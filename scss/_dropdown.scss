@@ -10,8 +10,17 @@
   white-space: nowrap;
 
   // Generate the caret automatically
-  @include caret;
+  @include custom-caret;
 }
+@each $color, $value in $theme-colors {
+  .btn-#{$color}.dropdown-toggle::after {
+    @include caret-color($value);
+  }
+  .btn-#{$color}.dropdown-toggle:hover::after {
+    @include hover-caret-color($value);
+  }
+}
+
 
 // The dropdown menu
 .dropdown-menu {
@@ -20,6 +29,7 @@
   left: 0;
   z-index: $zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
+  float: left;
   min-width: $dropdown-min-width;
   padding: $dropdown-padding-y 0;
   margin: $dropdown-spacer 0 0; // override default ul
@@ -61,7 +71,16 @@
   }
 
   .dropdown-toggle {
-    @include caret(up);
+    @include custom-caret;
+  }
+
+  @each $color, $value in $theme-colors {
+    .btn-#{$color}.dropdown-toggle::after {
+      @include caret-color-up($value);
+    }
+    .btn-#{$color}.dropdown-toggle:hover::after {
+      @include hover-caret-color-up($value);
+    }
   }
 }
 
@@ -75,9 +94,15 @@
   }
 
   .dropdown-toggle {
-    @include caret(right);
-    &::after {
-      vertical-align: 0;
+    @include custom-caret;
+  }
+
+  @each $color, $value in $theme-colors {
+    .btn-#{$color}.dropdown-toggle::after {
+      @include caret-color-right($value);
+    }
+    .btn-#{$color}.dropdown-toggle:hover::after {
+      @include hover-caret-color-right($value);
     }
   }
 }
@@ -92,9 +117,15 @@
   }
 
   .dropdown-toggle {
-    @include caret(left);
-    &::before {
-      vertical-align: 0;
+    @include custom-caret(left);
+  }
+
+  @each $color, $value in $theme-colors {
+    .btn-#{$color}.dropdown-toggle::before {
+      @include caret-color-left($value);
+    }
+    .btn-#{$color}.dropdown-toggle:hover::after {
+      @include hover-caret-color-left($value);
     }
   }
 }
@@ -123,6 +154,7 @@
   display: block;
   width: 100%; // For `<button>`s
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  padding-right: $dropdown-item-padding-x * 1.5;
   clear: both;
   font-weight: $font-weight-normal;
   color: $dropdown-link-color;
@@ -143,8 +175,7 @@
     }
   }
 
-  &:hover,
-  &:focus {
+  @include hover-focus {
     color: $dropdown-link-hover-color;
     text-decoration: none;
     @include gradient-bg($dropdown-link-hover-bg);

@@ -64,7 +64,7 @@
 
   @include hover {
     color: $color-hover;
-    background-color: $active-background;
+    background-color: lighten($active-background, 20%);
     border-color: $active-border;
   }
 

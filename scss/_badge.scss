@@ -41,6 +41,7 @@
   padding-right: $badge-pill-padding-x;
   padding-left: $badge-pill-padding-x;
   @include border-radius($badge-pill-border-radius);
+  font-weight: $font-weight-light;
 }
 
 // Colors
@@ -51,4 +52,9 @@
   .badge-#{$color} {
     @include badge-variant($value);
   }
+}
+
+.badge-light {
+  color: $primary;
+  background-color: $white;
 }

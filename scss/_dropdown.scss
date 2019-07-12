@@ -10,8 +10,17 @@
   white-space: nowrap;
 
   // Generate the caret automatically
-  @include caret;
+  @include custom-caret;
 }
+@each $color, $value in $theme-colors {
+  .btn-#{$color}.dropdown-toggle::after {
+    @include caret-color($value);
+  }
+  .btn-#{$color}.dropdown-toggle:hover::after {
+    @include hover-caret-color($value);
+  }
+}
+
 
 // The dropdown menu
 .dropdown-menu {
@@ -62,7 +71,16 @@
   }
 
   .dropdown-toggle {
-    @include caret(up);
+    @include custom-caret;
+  }
+
+  @each $color, $value in $theme-colors {
+    .btn-#{$color}.dropdown-toggle::after {
+      @include caret-color-up($value);
+    }
+    .btn-#{$color}.dropdown-toggle:hover::after {
+      @include hover-caret-color-up($value);
+    }
   }
 }
 
@@ -76,9 +94,15 @@
   }
 
   .dropdown-toggle {
-    @include caret(right);
-    &::after {
-      vertical-align: 0;
+    @include custom-caret;
+  }
+
+  @each $color, $value in $theme-colors {
+    .btn-#{$color}.dropdown-toggle::after {
+      @include caret-color-right($value);
+    }
+    .btn-#{$color}.dropdown-toggle:hover::after {
+      @include hover-caret-color-right($value);
     }
   }
 }
@@ -93,9 +117,15 @@
   }
 
   .dropdown-toggle {
-    @include caret(left);
-    &::before {
-      vertical-align: 0;
+    @include custom-caret(left);
+  }
+
+  @each $color, $value in $theme-colors {
+    .btn-#{$color}.dropdown-toggle::before {
+      @include caret-color-left($value);
+    }
+    .btn-#{$color}.dropdown-toggle:hover::after {
+      @include hover-caret-color-left($value);
     }
   }
 }
@@ -124,6 +154,7 @@
   display: block;
   width: 100%; // For `<button>`s
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  padding-right: $dropdown-item-padding-x * 1.5;
   clear: both;
   font-weight: $font-weight-normal;
   color: $dropdown-link-color;

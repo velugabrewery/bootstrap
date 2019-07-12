@@ -5679,7 +5679,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .list-group-item.disabled, .list-group-item:disabled {
-  color: #869196;
+  color: #adb8bd;
   pointer-events: none;
   background-color: #fff;
 }
